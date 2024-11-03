@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad de Gramática: Verbo "To Be"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            background: url(https://images.pexels.com/photos/26568607/pexels-photo-26568607/free-photo-of-palace-of-westminster-and-the-big-ben-seen-from-across-the-thames-london-england-uk.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .module {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            color: #333;
+        }
+        .activity {
+            margin-top: 15px;
+            color: #555;
+        }
+        .activity input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+        .check-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .check-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Actividad de Gramática: Verbo "To Be"</h1>
+
+    <div class="module">
+        <h2>Módulo 1: Completa las Oraciones</h2>
+        <div class="activity">
+            <p>1. She <input type="text" id="m1q1" placeholder="(is/am/are)"> a doctor.</p>
+            <p>2. They <input type="text" id="m1q2" placeholder="(is/am/are)"> happy to see you.</p>
+            <p>3. I <input type="text" id="m1q3" placeholder="(is/am/are)"> excited about the trip.</p>
+            <p>4. We <input type="text" id="m1q4" placeholder="(is/am/are)"> at the park right now.</p>
+            <p>5. He <input type="text" id="m1q5" placeholder="(is/am/are)"> my best friend.</p>
+            <p>6. The books <input type="text" id="m1q6" placeholder="(is/am/are)"> on the table.</p>
+        </div>
+        <button class="check-btn" onclick="checkModule(1, ['is', 'are', 'am', 'are', 'is', 'are'], 6)">Comprobar Respuestas</button>
+        <p class="result" id="result1"></p>
+    </div>
+
+    <div class="module">
+        <h2>Módulo 2: Preguntas y Respuestas</h2>
+        <div class="activity">
+            <p>1. What time <input type="text" id="m2q1" placeholder="(is/am/are)"> you going to the party?</p>
+            <p>2. Where <input type="text" id="m2q2" placeholder="(is/am/are)"> your parents from?</p>
+            <p>3. How <input type="text" id="m2q3" placeholder="(is/am/are)"> you feeling today?</p>
+            <p>4. Who <input type="text" id="m2q4" placeholder="(is/am/are)"> your favorite actor?</p>
+            <p>5. When <input type="text" id="m2q5" placeholder="(is/am/are)"> the meeting scheduled for?</p>
+            <p>6. Why <input type="text" id="m2q6" placeholder="(is/am/are)"> they late?</p>
+        </div>
+        <button class="check-btn" onclick="checkModule(2, ['are', 'are', 'are', 'is', 'is', 'are'], 6)">Comprobar Respuestas</button>
+        <p class="result" id="result2"></p>
+    </div>
+
+    <div class="module">
+        <h2>Módulo 3: Elige la Opción Correcta</h2>
+        <div class="activity">
+            <p>1. I <input type="text" id="m3q1" placeholder="(is/am/are)"> a student at the university.</p>
+            <p>2. They <input type="text" id="m3q2" placeholder="(is/am/are)"> playing football in the park.</p>
+            <p>3. She <input type="text" id="m3q3" placeholder="(is/am/are)"> not at home.</p>
+            <p>4. We <input type="text" id="m3q4" placeholder="(is/am/are)"> going to the concert tonight.</p>
+            <p>5. It <input type="text" id="m3q5" placeholder="(is/am/are)"> raining outside.</p>
+            <p>6. You <input type="text" id="m3q6" placeholder="(is/am/are)"> very talented!</p>
+        </div>
+        <button class="check-btn" onclick="checkModule(3, ['am', 'are', 'is', 'are', 'is', 'are'], 6)">Comprobar Respuestas</button>
+        <p class="result" id="result3"></p>
+    </div>
+
+    <div class="module">
+        <h2>Resultados Finales</h2>
+        <button class="check-btn" onclick="calculateFinalScore()">Calcular Nota Final</button>
+        <p class="result" id="finalResult"></p>
+    </div>
+
+    <script>
+        let scores = [0, 0, 0]; // Array to hold scores for each module
+
+        function checkModule(module, correctAnswers, totalExercises) {
+            let score = 0;
+            let resultText = '';
+            for (let i = 0; i < correctAnswers.length; i++) {
+                const userInput = document.getElementById(`m${module}q${i + 1}`).value.toLowerCase();
+                const answer = correctAnswers[i].toLowerCase();
+                const inputElement = document.getElementById(`m${module}q${i + 1}`);
+
+                if (userInput === answer) {
+                    resultText += `<p class="correct">Pregunta ${i + 1}: ${userInput} - Correcto</p>`;
+                    score++;
+                } else {
+                    resultText += `<p class="incorrect">Pregunta ${i + 1}: ${userInput} - Incorrecto, la respuesta correcta es ${correctAnswers[i]}</p>`;
+                }
+            }
+
+            scores[module - 1] = score; // Store the score for the current module
+            document.getElementById(`result${module}`).innerHTML = resultText;
+        }
+
+        function calculateFinalScore() {
+            const totalMaxScore = 10; // Total score possible
+            const totalModules = 3; // Number of modules
+            const scorePerModule = totalMaxScore / totalModules; // Score per module
+
+            let finalScore = 0;
+            for (let score of scores) {
+                finalScore += (score / 6) * scorePerModule; // Calculate final score for each module
+            }
+
+            document.getElementById('finalResult').innerHTML = `Tu nota final es: ${finalScore.toFixed(2)} / ${totalMaxScore}`;
+        }
+    </script>
+</body>
+</html>
